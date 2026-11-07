@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="es" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política del Perú 1985–2030</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    
+    <!-- Firebase SDKs (Modular CDN) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        window.firebaseModules = { initializeApp, getFirestore, doc, getDoc, setDoc, onSnapshot };
+    </script>
+
+    <style>
+        :root {
+            --primary: #C4122F;
+            --primary-hover: #a00e26;
+            --bg-color: #f8fafc;
+            --surface-color: #ffffff;
+            --surface-alt: #f1f5f9;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #cbd5e1;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html.dark {
+            --bg-color: #0f172a;
+            --surface-color: #1e293b;
+            --surface-alt: #334155;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #475569;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+            padding-bottom: 80px;
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 1rem 2rem 1rem;
+            max-width: 950px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .top-controls {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .btn-ctrl {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .btn-ctrl:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        .btn-ctrl:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-primary-action {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .btn-primary-action:hover {
+            background-color: var(--primary-hover);
+            color: white;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 900;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 1.4vw, 1.15rem);
+            color: var(--text-muted);
+            max-width: 850px;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        .sync-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: var(--surface-alt);
+            border-radius: 9999px;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .sync-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #eab308;
+        }
+
+        .sync-dot.online {
+            background-color: #22c55e;
+        }
+
+        /* IMAGEN CENTRAL GRANDE */
+        .hero-banner-container {
+            max-width: 1300px;
+            margin: 0 auto 3rem auto;
+            padding: 0 1.5rem;
+            position: relative;
+        }
+
+        .hero-banner {
+            width: 100%;
+            height: 420px;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid var(--primary);
+        }
+
+        .hero-banner svg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .upload-img-btn {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background: rgba(0, 0, 0, 0.75);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+            transition: var(--transition);
+        }
+
+        .upload-img-btn:hover {
+            background: var(--primary);
+        }
+
+        #custom-image-input {
+            display: none;
+        }
+
+        /* TARJETAS DE ICONOS */
+        .info-cards-section {
+            max-width: 1200px;
+            margin: 0 auto 4rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .info-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .icon-circle-wrapper {
+            position: relative;
+            margin-bottom: 1.25rem;
+        }
+
+        .icon-circle {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: var(--surface-alt);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            border: 3px solid var(--primary);
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        .icon-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .info-card:hover .icon-circle {
+            background: var(--primary);
+            color: white;
+        }
+
+        .change-card-img-btn {
+            display: none;
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.75rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        .editable-active .change-card-img-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .info-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .click-hint {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* MODALES */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 1.5rem;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: var(--surface-color);
+            color: var(--text-color);
+            width: 100%;
+            max-width: 750px;
+            max-height: 85vh;
+            border-radius: 1.25rem;
+            padding: 2.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid var(--border-color);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: var(--surface-alt);
+            border: none;
+            color: var(--text-color);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .modal-body {
+            font-size: 1.125rem; /* Mínimo 18px */
+            line-height: 1.8;
+        }
+
+        .modal-body h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .modal-body p, .modal-body li {
+            margin-bottom: 1rem;
+        }
+
+        .modal-body ul {
+            padding-left: 1.5rem;
+        }
+
+        /* LÍNEA DE TIEMPO PROPORCIONAL HORIZONTAL */
+        .timeline-section {
+            max-width: 1400px;
+            margin: 0 auto 4rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .timeline-header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-header-container h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .timeline-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .scroll-btn {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .scroll-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .timeline-wrapper {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--card-shadow);
+            overflow-x: auto;
+            position: relative;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) var(--surface-alt);
+        }
+
+        .timeline-wrapper::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .timeline-wrapper::-webkit-scrollbar-track {
+            background: var(--surface-alt);
+            border-radius: 5px;
+        }
+
+        .timeline-wrapper::-webkit-scrollbar-thumb {
+            background-color: var(--primary);
+            border-radius: 5px;
+        }
+
+        /* 45 años * 70px por año = 3150px exactos */
+        .timeline-track-container {
+            width: 3150px;
+            position: relative;
+            padding: 220px 0 200px 0;
+        }
+
+        .rulers-bar {
+            position: sticky;
+            top: 0;
+            height: 52px;
+            background: var(--surface-alt);
+            border-radius: 8px;
+            display: flex;
+            z-index: 20;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .ruler-segment {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            border-right: 1px solid var(--border-color);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: var(--text-color);
+            background-color: rgba(196, 18, 47, 0.08);
+            transition: background-color 0.2s;
+        }
+
+        .ruler-segment:hover {
+            background-color: rgba(196, 18, 47, 0.18);
+        }
+
+        .timeline-axis-line {
+            position: absolute;
+            top: 290px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary);
+        }
+
+        .axis-marker {
+            position: absolute;
+            top: 272px;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .axis-dot {
+            width: 14px;
+            height: 14px;
+            background: var(--surface-color);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            z-index: 5;
+            margin-bottom: 6px;
+        }
+
+        .axis-year {
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+
+        .axis-year.current-hoy {
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .sub-tick {
+            position: absolute;
+            top: 277px;
+            width: 2px;
+            height: 10px;
+            background: var(--border-color);
+            transform: translateX(-50%);
+        }
+
+        .event-card {
+            position: absolute;
+            width: 230px;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            box-shadow: var(--card-shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .event-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: var(--primary);
+            z-index: 30;
+        }
+
+        .event-card.card-top {
+            top: 75px;
+        }
+
+        .event-card.card-bottom {
+            top: 325px;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 50px;
+            background: var(--border-color);
+            transform: translateX(-50%);
+        }
+
+        .event-card.card-top::before {
+            bottom: -50px;
+        }
+
+        .event-card.card-bottom::before {
+            top: -50px;
+        }
+
+        .event-year-badge {
+            display: inline-block;
+            background: rgba(196, 18, 47, 0.1);
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0.25rem;
+            line-height: 1.3;
+        }
+
+        .event-card p {
+            font-size: 0.825rem;
+            color: var(--text-muted);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .delete-event-btn {
+            display: none;
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            z-index: 25;
+        }
+
+        .editable-active .delete-event-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* MODO EDICIÓN BARRA FLOTANTE */
+        .editable-active [contenteditable="true"] {
+            border: 2px dashed var(--primary);
+            background: rgba(196, 18, 47, 0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .edit-controls-bar {
+            display: none;
+            background: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 90;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+            justify-content: center;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .edit-controls-bar.active {
+            display: flex;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner {
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-controls">
+            <button class="btn-ctrl" id="theme-toggle" title="Cambiar Tema">🌙 Modo Oscuro</button>
+            <button class="btn-ctrl btn-primary-action" id="edit-mode-btn">✏️ Modo Edición</button>
+        </div>
+        <div class="sync-status" id="sync-status">
+            <span class="sync-dot" id="sync-dot"></span>
+            <span id="sync-text">Modo Local (Firebase no configurado)</span>
+        </div>
+        <h1 contenteditable="false" data-field="main-title">Entre el poder, la corrupción y las brechas sociales</h1>
+        <p class="subtitle" contenteditable="false" data-field="main-subtitle">Un recorrido por la historia política del Perú para comprender cómo las decisiones, acciones y omisiones de sus presidentes han influido en la sociedad, la democracia y la desigualdad del país.</p>
+    </header>
+
+    <!-- IMAGEN CENTRAL -->
+    <section class="hero-banner-container">
+        <div class="hero-banner" id="hero-banner-box">
+            <svg viewBox="0 0 1200 420" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="0" width="180" height="420" fill="#C4122F" />
+                <rect x="1020" y="0" width="180" height="420" fill="#C4122F" />
+                <defs>
+                    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#881337" />
+                        <stop offset="50%" stop-color="#c2410c" />
+                        <stop offset="100%" stop-color="#f59e0b" />
+                    </linearGradient>
+                    <linearGradient id="sunGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#fef08a" />
+                        <stop offset="100%" stop-color="#f59e0b" />
+                    </linearGradient>
+                </defs>
+                <rect x="180" y="0" width="840" height="420" fill="url(#skyGrad)" />
+                <circle cx="600" cy="240" r="110" fill="url(#sunGrad)" opacity="0.9" />
+                <circle cx="600" cy="240" r="130" fill="#fef08a" opacity="0.2" />
+                <polygon points="180,320 380,180 580,320" fill="#475569" opacity="0.7" />
+                <polygon points="520,320 720,150 920,320" fill="#334155" opacity="0.7" />
+                <polygon points="180,360 300,220 450,360" fill="#1e293b" />
+                <polygon points="400,360 600,190 820,360" fill="#0f172a" />
+                <polygon points="750,360 880,250 1020,360" fill="#1e293b" />
+                <polygon points="180,420 350,280 520,420" fill="#090d16" />
+                <path d="M 330,296 L 350,280 L 375,302 L 360,310 Z" fill="#ffffff" />
+                <polygon points="480,420 630,220 780,420" fill="#090d16" />
+                <path d="M 605,240 L 630,220 L 655,242 L 640,255 L 620,245 Z" fill="#ffffff" />
+                <polygon points="720,420 870,300 1020,420" fill="#090d16" />
+                <path d="M 850,316 L 870,300 L 890,320 L 865,325 Z" fill="#ffffff" />
+                <path d="M 720,110 Q 740,100 760,115 Q 770,105 780,110 Q 765,125 755,115 Q 740,120 720,110 Z" fill="#ffffff" opacity="0.9" />
+                <text x="600" y="390" text-anchor="middle" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="600" letter-spacing="4" opacity="0.85">POLÍTICA DEL PERÚ 1985–2030</text>
+            </svg>
+            <button class="upload-img-btn" id="upload-img-trigger">📷 Reemplazar Foto Principal</button>
+            <input type="file" id="custom-image-input" accept="image/*">
+        </div>
+    </section>
+
+    <!-- 3 ICONOS SUPERIORES -->
+    <section class="info-cards-section">
+        <div class="info-cards-grid">
+            <div class="info-card" data-modal="modal-1">
+                <div class="icon-circle-wrapper">
+                    <div class="icon-circle" id="icon-circle-1">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><text x="12" y="16" font-size="10" font-weight="bold" text-anchor="middle" fill="currentColor" stroke="none">90</text></svg>
+                    </div>
+                    <button class="change-card-img-btn" data-card-icon="1" title="Cambiar Imagen">📷</button>
+                </div>
+                <h3 contenteditable="false" data-field="card1-title">Economía y el Cambio de Modelo</h3>
+                <p contenteditable="false" data-field="card1-desc">El primer gobierno de Alan García quedó grabado por la grave hiperinflación y el colapso financiero, mientras que el gobierno de Alberto Fujimori reestructuró la economía hacia el libre mercado y las privatizaciones.</p>
+                <span class="click-hint">Haz clic para ampliar detalles</span>
+            </div>
+
+            <div class="info-card" data-modal="modal-2">
+                <div class="icon-circle-wrapper">
+                    <div class="icon-circle" id="icon-circle-2">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <button class="change-card-img-btn" data-card-icon="2" title="Cambiar Imagen">📷</button>
+                </div>
+                <h3 contenteditable="false" data-field="card2-title">Cambio 90 y Alberto Fujimori</h3>
+                <p contenteditable="false" data-field="card2-desc">Partido que llevó a Fujimori a la presidencia en 1990. Presidente de 1990 a 2000; autogolpe en 1992; condenado en 2009 a 25 años de prisión; murió el 11 de septiembre de 2024.</p>
+                <span class="click-hint">Haz clic para ampliar detalles</span>
+            </div>
+
+            <div class="info-card" data-modal="modal-3">
+                <div class="icon-circle-wrapper">
+                    <div class="icon-circle" id="icon-circle-3">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2zM18 2h-8v20h8V2zM6 6h2v2H6V6zM6 10h2v2H6v-2zM6 14h2v2H6v-2z"/></svg>
+                    </div>
+                    <button class="change-card-img-btn" data-card-icon="3" title="Cambiar Imagen">📷</button>
+                </div>
+                <h3 contenteditable="false" data-field="card3-title">La República y Desafíos Sociales</h3>
+                <p contenteditable="false" data-field="card3-desc">Diario peruano fundado en 1981, cronista de los gobiernos de este periodo. La desconfianza en las instituciones, las brechas sociales y la participación ciudadana.</p>
+                <span class="click-hint">Haz clic para ampliar detalles</span>
+            </div>
+        </div>
+        <input type="file" id="card-icon-input" accept="image/*" style="display:none;">
+    </section>
+
+    <!-- VENTANAS MODALES (TEXTO >= 18px) -->
+    <div class="modal-overlay" id="modal-1">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-body" contenteditable="false" data-field="modal1-content">
+                <h2>📈 Economía y el Cambio de Modelo</h2>
+                <p>El primer gobierno de Alan García quedó grabado por la grave hiperinflación y el colapso financiero, mientras que el gobierno de Alberto Fujimori reestructuró la economía hacia el libre mercado y las privatizaciones.</p>
+                <p><strong>Corrupción, Justicia y Polarización:</strong> Los escándalos de corrupción que salpicaron a ambas administraciones y sus procesos judiciales. Su legado sigue dividiendo al Perú entre el antiaprismo y el antifujimorismo, marcando la política actual.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-2">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-body" contenteditable="false" data-field="modal2-content">
+                <h2>🏛️ Cambio 90 y Alberto Fujimori</h2>
+                <p><strong>1. ¿Qué fue?</strong> Partido que llevó a Fujimori a la presidencia en 1990.</p>
+                <p><strong>2. Llegada al poder:</strong> Ganó prometiendo superar la crisis económica y combatir el terrorismo.</p>
+                <p><strong>3. Medidas:</strong> Aplicó el Fujishock, cerró el Congreso en 1992 y combatió el terrorismo.</p>
+                <p><strong>4. Consecuencias:</strong> Bajó la inflación, pero hubo autoritarismo, violaciones de derechos humanos y corrupción.</p>
+                <p><strong>5. Legado:</strong> Dejó cambios económicos, avances contra el terrorismo y daños a la democracia peruana. Presidente de 1990 a 2000; autogolpe en 1992; condenado en 2009 a 25 años de prisión; murió el 11 de septiembre de 2024.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-3">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-body" contenteditable="false" data-field="modal3-content">
+                <h2>📰 La República y Desafíos Democráticos</h2>
+                <p><em>La República: diario peruano fundado en 1981, cronista de los gobiernos de este periodo.</em></p>
+                <p><strong>1. La desconfianza en las instituciones continúa siendo un desafío.</strong> La corrupción y el incumplimiento de las promesas políticas han generado desconfianza en las instituciones públicas. Por ello, es importante fortalecer la democracia, recuperar la confianza de los ciudadanos y garantizar que las autoridades actúen con honestidad.</p>
+                <p><strong>2. Las brechas en educación, salud y oportunidades requieren políticas públicas eficaces.</strong> En el Perú todavía existen desigualdades en el acceso a una educación de calidad, servicios de salud y oportunidades laborales. El Estado debe implementar políticas públicas que permitan reducir estas diferencias y mejorar la calidad de vida de toda la población.</p>
+                <p><strong>3. La transparencia, la fiscalización y la participación ciudadana en la prevención de la corrupción.</strong> La transparencia permite conocer cómo se utilizan los recursos públicos, mientras que la fiscalización ayuda a vigilar las acciones de las autoridades. Además, la participación ciudadana es fundamental para denunciar irregularidades, exigir rendición de cuentas y prevenir la corrupción.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- LÍNEA DE TIEMPO PROPORCIONAL -->
+    <section class="timeline-section">
+        <div class="timeline-header-container">
+            <h2>Línea de Tiempo Política (1985–2030)</h2>
+            <div class="timeline-controls">
+                <button class="scroll-btn" id="scroll-left" title="Desplazar Izquierda">◀️</button>
+                <button class="scroll-btn" id="scroll-right" title="Desplazar Derecha">▶️</button>
+            </div>
+        </div>
+
+        <div class="timeline-wrapper" id="timeline-wrapper">
+            <div class="timeline-track-container" id="timeline-track">
+                <!-- Franja superior de gobernantes (Sticky) -->
+                <div class="rulers-bar" id="rulers-bar"></div>
+                <!-- Eje y marcas -->
+                <div class="timeline-axis-line" id="timeline-axis-line"></div>
+                <div id="axis-markers-container"></div>
+                <!-- Tarjetas de hechos -->
+                <div id="events-cards-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BARRA FLOTANTE EDICIÓN -->
+    <div class="edit-controls-bar" id="edit-controls-bar">
+        <button class="btn-ctrl btn-primary-action" id="save-edits-btn">💾 Guardar Cambios</button>
+        <button class="btn-ctrl" id="add-event-btn" style="background:#0284c7; color:white; border-color:#0284c7;">➕ Añadir Hecho</button>
+        <button class="btn-ctrl" id="cancel-edits-btn">❌ Cancelar</button>
+    </div>
+
+    <footer>
+        <p>Infografía Interactiva de la Política del Perú (1985–2030) — Diseñado para colaboración en tiempo real.</p>
+    </footer>
+
+    <!-- JAVASCRIPT PRINCIPAL -->
+    <script>
+        // ==========================================
+        // CONFIGURACIÓN DE FIREBASE (PEGA TUS CLAVES AQUÍ)
+        // ==========================================
+        const firebaseConfig = {
+            apiKey: "TU_API_KEY",
+            authDomain: "tu-proyecto.firebaseapp.com",
+            projectId: "tu-proyecto",
+            storageBucket: "tu-proyecto.appspot.com",
+            messagingSenderId: "tu-sender-id",
+            appId: "tu-app-id"
+        };
+
+        // GOBERNANTES EN ORDEN CRONOLÓGICO ESTRICTO (Ancho proporcional: 70px por año)
+        const rulersData = [
+            { name: "Alan García", start: 1985, end: 1990 },
+            { name: "Alberto Fujimori", start: 1990, end: 2000 },
+            { name: "Valentín Paniagua", start: 2000, end: 2001 },
+            { name: "Alejandro Toledo", start: 2001, end: 2006 },
+            { name: "Alan García (2do)", start: 2006, end: 2011 },
+            { name: "Ollanta Humala", start: 2011, end: 2016 },
+            { name: "Pedro Pablo Kuczynski", start: 2016, end: 2018 },
+            { name: "Martín Vizcarra", start: 2018, end: 2020 },
+            { name: "Manuel Merino", start: 2020, end: 2020.08 },
+            { name: "Francisco Sagasti", start: 2020.08, end: 2021 },
+            { name: "Pedro Castillo", start: 2021, end: 2022 },
+            { name: "Dina Boluarte", start: 2022, end: 2025 },
+            { name: "José Jerí", start: 2025, end: 2026.12 },
+            { name: "José María Balcázar", start: 2026.12, end: 2026.57 },
+            { name: "Keiko Fujimori (mandato en curso)", start: 2026.57, end: 2030 }
+        ];
+
+        // HECHOS HISTÓRICOS OFICIALES SOLICITADOS
+        let eventsData = [
+            { year: 1985, title: "1er gobierno de Alan García", desc: "1985 - 1990: Inicio del primer gobierno aprista.", position: "top" },
+            { year: 1990, title: "Alberto Fujimori y Fujishock", desc: "1990 - 2000: Fujimori vence a Vargas Llosa y aplica el Fujishock.", position: "bottom" },
+            { year: 1991, title: "Masacre de Barrios Altos", desc: "3 de noviembre de 1991.", position: "top" },
+            { year: 1992, title: "Autogolpe y La Cantuta", desc: "5 de abril autogolpe y 18 de julio caso La Cantuta. Captura de Abimael Guzmán (12 sep).", position: "bottom" },
+            { year: 1993, title: "Constitución de 1993", desc: "31 de octubre de 1993: Referéndum de la Constitución de 1993.", position: "top" },
+            { year: 1996, title: "Esterilizaciones y Rehenes", desc: "1996-2000 Esterilizaciones forzadas / 1996-1997 Toma de rehenes en la residencia de Japón.", position: "bottom" },
+            { year: 1997, title: "Operación Chavín de Huántar", desc: "1997 Operación Chavín de Huántar.", position: "top" },
+            { year: 1998, title: "Paz con Ecuador", desc: "1998 Firma del acuerdo definitivo de paz con Ecuador.", position: "bottom" },
+            { year: 2000, title: "Vladivideos y Transición", desc: "Difusión de vladivideos, caída de Fujimori y gobierno de transición de Valentín Paniagua (2000-2001).", position: "top" },
+            { year: 2001, title: "Alejandro Toledo y CVR", desc: "2001-2006 Alejandro Toledo. 2001 Comisión de la Verdad.", position: "bottom" },
+            { year: 2003, title: "Informe Final CVR", desc: "2003 Entrega del informe final de la Comisión de la Verdad y la Reconciliación.", position: "top" },
+            { year: 2006, title: "Alan García 2do gobierno", desc: "2006-2011 Segundo periodo de Alan García.", position: "bottom" },
+            { year: 2007, title: "Terremoto y Extradición", desc: "2007 Terremoto de Pisco y extradición de Alberto Fujimori desde Chile.", position: "top" },
+            { year: 2009, title: "Condena a Fujimori y Baguazo", desc: "2009 Condena a Fujimori a 25 años de prisión y conflicto del Baguazo.", position: "bottom" },
+            { year: 2010, title: "Nobel de Literatura", desc: "2010 Mario Vargas Llosa gana el Premio Nobel de Literatura.", position: "top" },
+            { year: 2011, title: "Ollanta Humala", desc: "2011-2016 Ollanta Humala vence a Keiko Fujimori.", position: "bottom" },
+            { year: 2014, title: "La Haya y COP20", desc: "2014 Sentencia de La Haya sobre límite marítimo y cumbre COP20 en Lima.", position: "top" },
+            { year: 2016, title: "PPK y Caso Odebrecht", desc: "2016-2018 PPK asume la presidencia. Estalla el caso Odebrecht.", position: "bottom" },
+            { year: 2017, title: "Indulto a Fujimori", desc: "2017 PPK concede el indulto a Alberto Fujimori.", position: "top" },
+            { year: 2018, title: "Martín Vizcarra", desc: "2018-2020 Vizcarra asume tras la renuncia de PPK.", position: "bottom" },
+            { year: 2019, title: "Disolución del Congreso", desc: "2019 Vizcarra disuelve constitucionalmente el Congreso de la República.", position: "top" },
+            { year: 2020, title: "Pandemia y 3 Presidentes", desc: "2020 Pandemia, vacancia de Vizcarra, Manuel Merino (10 al 15 nov) y Francisco Sagasti (2020-2021).", position: "bottom" },
+            { year: 2021, title: "Pedro Castillo", desc: "2021-2022 Pedro Castillo gana a Keiko Fujimori.", position: "top" },
+            { year: 2022, title: "Autogolpe y Dina Boluarte", desc: "2022-2025 Autogolpe fallido de Castillo y primera presidenta (Boluarte).", position: "bottom" },
+            { year: 2023, title: "Protestas y Libertad", desc: "2023 Crisis social y orden de libertad para Alberto Fujimori.", position: "top" },
+            { year: 2024, title: "Muerte de Fujimori", desc: "2024 Muere Alberto Fujimori el 11 de septiembre.", position: "bottom" },
+            { year: 2025, title: "Vacancia y José Jerí", desc: "2025-2026 Vacancia de Boluarte (10 de octubre) y asume José Jerí.", position: "top" },
+            { year: 2026, title: "Transición y Keiko Fujimori", desc: "2026 Censura de Jerí (17 feb), Balcázar (feb-jul), elecciones del 12 abr y Keiko Fujimori asume el 28 jul (mandato en curso).", position: "bottom" }
+        ];
+
+        const PIXELS_PER_YEAR = 70; // 70px por año -> 5 años = 350px exactos
+        const BASE_YEAR = 1985;
+
+        const rulersBar = document.getElementById('rulers-bar');
+        const axisMarkersContainer = document.getElementById('axis-markers-container');
+        const eventsCardsContainer = document.getElementById('events-cards-container');
+        const timelineWrapper = document.getElementById('timeline-wrapper');
+
+        function renderTimeline() {
+            // 1. Franja de gobernantes
+            rulersBar.innerHTML = '';
+            rulersData.forEach(ruler => {
+                const duration = ruler.end - ruler.start;
+                const widthPx = duration * PIXELS_PER_YEAR;
+                const seg = document.createElement('div');
+                seg.className = 'ruler-segment';
+                seg.style.width = `${widthPx}px`;
+                seg.innerText = `${ruler.name}`;
+                seg.title = `${ruler.name} (${ruler.start} - ${ruler.end})`;
+                rulersBar.appendChild(seg);
+            });
+
+            // 2. Marcas del eje cada 5 años (1985 - 2030)
+            axisMarkersContainer.innerHTML = '';
+            for (let year = 1985; year <= 2030; year += 5) {
+                const leftPos = (year - BASE_YEAR) * PIXELS_PER_YEAR;
+                const marker = document.createElement('div');
+                marker.className = 'axis-marker';
+                marker.style.left = `${leftPos}px`;
+
+                marker.innerHTML = `
+                    <div class="axis-dot"></div>
+                    <span class="axis-year">${year}</span>
+                `;
+                axisMarkersContainer.appendChild(marker);
+            }
+
+            // Marcador especial año actual (2026 -> Hoy)
+            const currentYearPos = (2026 - BASE_YEAR) * PIXELS_PER_YEAR;
+            const hoyMarker = document.createElement('div');
+            hoyMarker.className = 'axis-marker';
+            hoyMarker.style.left = `${currentYearPos}px`;
+            hoyMarker.innerHTML = `
+                <div class="axis-dot" style="border-color:#22c55e; background:#22c55e;"></div>
+                <span class="axis-year current-hoy">2026 (Hoy)</span>
+            `;
+            axisMarkersContainer.appendChild(hoyMarker);
+
+            // Rayitas menores intermedias por año
+            for (let year = 1985; year < 2030; year++) {
+                if (year % 5 !== 0 && year !== 2026) {
+                    const leftPos = (year - BASE_YEAR) * PIXELS_PER_YEAR;
+                    const subTick = document.createElement('div');
+                    subTick.className = 'sub-tick';
+                    subTick.style.left = `${leftPos}px`;
+                    axisMarkersContainer.appendChild(subTick);
+                }
+            }
+
+            // 3. Tarjetas de hechos históricos
+            eventsCardsContainer.innerHTML = '';
+            eventsData.forEach((ev, index) => {
+                const leftPos = (ev.year - BASE_YEAR) * PIXELS_PER_YEAR;
+                const card = document.createElement('div');
+                card.className = `event-card ${ev.position === 'top' ? 'card-top' : 'card-bottom'}`;
+                card.style.left = `${leftPos - 115}px`;
+                card.innerHTML = `
+                    <button class="delete-event-btn" data-index="${index}" title="Eliminar hecho">&times;</button>
+                    <span class="event-year-badge">${ev.year}</span>
+                    <h4 contenteditable="false" data-event-index="${index}" data-event-field="title">${ev.title}</h4>
+                    <p contenteditable="false" data-event-index="${index}" data-event-field="desc">${ev.desc}</p>
+                `;
+
+                card.addEventListener('click', (e) => {
+                    if (isEditMode || e.target.classList.contains('delete-event-btn')) return;
+                    openModalCustom(ev.title, `<h2>${ev.year}: ${ev.title}</h2><p style="font-size:1.15rem; line-height:1.8;">${ev.desc}</p>`);
+                });
+
+                eventsCardsContainer.appendChild(card);
+            });
+
+            document.querySelectorAll('.delete-event-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const idx = parseInt(btn.getAttribute('data-index'));
+                    if (confirm(`¿Deseas eliminar el hecho "${eventsData[idx].title}"?`)) {
+                        eventsData.splice(idx, 1);
+                        renderTimeline();
+                        if (isEditMode) makeElementsEditable(true);
+                    }
+                });
+            });
+        }
+
+        // VENTANAS MODALES
+        function openModalCustom(title, htmlContent) {
+            let tempModal = document.getElementById('dynamic-modal-popup');
+            if (!tempModal) {
+                tempModal = document.createElement('div');
+                tempModal.className = 'modal-overlay';
+                tempModal.id = 'dynamic-modal-popup';
+                tempModal.innerHTML = `
+                    <div class="modal-content">
+                        <button class="modal-close" onclick="document.getElementById('dynamic-modal-popup').classList.remove('active')">&times;</button>
+                        <div class="modal-body" id="dynamic-modal-body"></div>
+                    </div>
+                `;
+                document.body.appendChild(tempModal);
+            }
+            document.getElementById('dynamic-modal-body').innerHTML = htmlContent;
+            tempModal.classList.add('active');
+        }
+
+        document.querySelectorAll('.info-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (isEditMode || e.target.classList.contains('change-card-img-btn')) return;
+                const modalId = card.getAttribute('data-modal');
+                document.getElementById(modalId).classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.modal-close').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.target.closest('.modal-overlay').classList.remove('active');
+            });
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+            }
+        });
+
+        // SCROLL CON BOTONES
+        document.getElementById('scroll-left').addEventListener('click', () => {
+            timelineWrapper.scrollBy({ left: -380, behavior: 'smooth' });
+        });
+        document.getElementById('scroll-right').addEventListener('click', () => {
+            timelineWrapper.scrollBy({ left: 380, behavior: 'smooth' });
+        });
+
+        // TEMA CLARO / OSCURO
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        themeToggleBtn.addEventListener('click', () => {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                themeToggleBtn.innerText = '🌙 Modo Oscuro';
+            } else {
+                html.classList.remove('dark');
+                html.classList.add('dark');
+                themeToggleBtn.innerText = '☀️ Modo Claro';
+            }
+        });
+
+        // IMAGEN HERO PRINCIPAL
+        const uploadTrigger = document.getElementById('upload-img-trigger');
+        const customImageInput = document.getElementById('custom-image-input');
+        const heroBannerBox = document.getElementById('hero-banner-box');
+
+        uploadTrigger.addEventListener('click', () => customImageInput.click());
+        customImageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    heroBannerBox.style.background = `url('${evt.target.result}') center/cover no-repeat`;
+                    heroBannerBox.querySelector('svg').style.display = 'none';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // IMÁGENES EN ICONOS DE TARJETAS
+        let activeCardIconToChange = null;
+        const cardIconInput = document.getElementById('card-icon-input');
+        document.querySelectorAll('.change-card-img-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                activeCardIconToChange = btn.getAttribute('data-card-icon');
+                cardIconInput.click();
+            });
+        });
+
+        cardIconInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file && activeCardIconToChange) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    const circleContainer = document.getElementById(`icon-circle-${activeCardIconToChange}`);
+                    circleContainer.innerHTML = `<img src="${evt.target.result}" alt="Icono personalizado">`;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // MODO EDICIÓN & FIREBASE / LOCALSTORAGE
+        let isEditMode = false;
+        const editModeBtn = document.getElementById('edit-mode-btn');
+        const editControlsBar = document.getElementById('edit-controls-bar');
+        const saveEditsBtn = document.getElementById('save-edits-btn');
+        const cancelEditsBtn = document.getElementById('cancel-edits-btn');
+        const addEventBtn = document.getElementById('add-event-btn');
+
+        let db = null;
+        let isFirebaseConfigured = false;
+
+        if (firebaseConfig.apiKey && firebaseConfig.apiKey !== "TU_API_KEY") {
+            try {
+                const { initializeApp, getFirestore, doc, onSnapshot } = window.firebaseModules;
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                isFirebaseConfigured = true;
+                document.getElementById('sync-dot').classList.add('online');
+                document.getElementById('sync-text').innerText = 'Sincronización Firestore Activa';
+                
+                onSnapshot(doc(db, "infografia", "main"), (docSnap) => {
+                    if (docSnap.exists() && !isEditMode) {
+                        applyDataToDOM(docSnap.data());
+                    }
+                });
+            } catch (err) {
+                console.error("Firebase init err:", err);
+            }
+        }
+
+        editModeBtn.addEventListener('click', () => {
+            isEditMode = !isEditMode;
+            if (isEditMode) {
+                editModeBtn.innerText = '🔒 Salir de Edición';
+                editControlsBar.classList.add('active');
+                document.body.classList.add('editable-active');
+                makeElementsEditable(true);
+            } else {
+                exitEditMode();
+            }
+        });
+
+        function makeElementsEditable(status) {
+            document.querySelectorAll('[data-field]').forEach(el => {
+                el.contentEditable = status ? "true" : "false";
+            });
+            document.querySelectorAll('.event-card h4, .event-card p').forEach(el => {
+                el.contentEditable = status ? "true" : "false";
+            });
+        }
+
+        function exitEditMode() {
+            isEditMode = false;
+            editModeBtn.innerText = '✏️ Modo Edición';
+            editControlsBar.classList.remove('active');
+            document.body.classList.remove('editable-active');
+            makeElementsEditable(false);
+        }
+
+        cancelEditsBtn.addEventListener('click', () => {
+            loadSavedData();
+            exitEditMode();
+        });
+
+        saveEditsBtn.addEventListener('click', async () => {
+            document.querySelectorAll('.event-card h4').forEach(h4 => {
+                const idx = parseInt(h4.getAttribute('data-event-index'));
+                if (eventsData[idx]) eventsData[idx].title = h4.innerText;
+            });
+            document.querySelectorAll('.event-card p').forEach(p => {
+                const idx = parseInt(p.getAttribute('data-event-index'));
+                if (eventsData[idx]) eventsData[idx].desc = p.innerText;
+            });
+
+            const dataToSave = gatherDOMData();
+            localStorage.setItem('peru_infografia_data_v3', JSON.stringify(dataToSave));
+
+            if (isFirebaseConfigured && db) {
+                try {
+                    const { doc, setDoc } = window.firebaseModules;
+                    await setDoc(doc(db, "infografia", "main"), dataToSave, { merge: true });
+                    alert('¡Cambios guardados y sincronizados correctamente en la nube!');
+                } catch (e) {
+                    console.error("Error al guardar en Firebase:", e);
+                    alert('Guardado localmente. Error en la sincronización con Firebase.');
+                }
+            } else {
+                alert('¡Cambios guardados localmente en este navegador!');
+            }
+            exitEditMode();
+        });
+
+        addEventBtn.addEventListener('click', () => {
+            const yearStr = prompt("Año del nuevo hecho (1985-2030):", "2024");
+            if (!yearStr) return;
+            const year = parseInt(yearStr);
+            const title = prompt("Título del hecho:", "Nuevo Acontecimiento");
+            const desc = prompt("Descripción corta:", "Detalle del evento histórico.");
+
+            if (year && title) {
+                eventsData.push({
+                    year: year,
+                    title: title,
+                    desc: desc || "",
+                    position: eventsData.length % 2 === 0 ? "top" : "bottom"
+                });
+                eventsData.sort((a, b) => a.year - b.year);
+                renderTimeline();
+                if (isEditMode) makeElementsEditable(true);
+            }
+        });
+
+        function gatherDOMData() {
+            const data = {
+                fields: {},
+                events: eventsData,
+                cardIcons: {
+                    icon1: document.getElementById('icon-circle-1').innerHTML,
+                    icon2: document.getElementById('icon-circle-2').innerHTML,
+                    icon3: document.getElementById('icon-circle-3').innerHTML
+                }
+            };
+            document.querySelectorAll('[data-field]').forEach(el => {
+                const key = el.getAttribute('data-field');
+                data.fields[key] = el.innerHTML;
+            });
+            return data;
+        }
+
+        function applyDataToDOM(data) {
+            if (data.fields) {
+                for (const [key, val] of Object.entries(data.fields)) {
+                    const el = document.querySelector(`[data-field="${key}"]`);
+                    if (el) el.innerHTML = val;
+                }
+            }
+            if (data.events) {
+                eventsData = data.events;
+                renderTimeline();
+            }
+            if (data.cardIcons) {
+                if (data.cardIcons.icon1) document.getElementById('icon-circle-1').innerHTML = data.cardIcons.icon1;
+                if (data.cardIcons.icon2) document.getElementById('icon-circle-2').innerHTML = data.cardIcons.icon2;
+                if (data.cardIcons.icon3) document.getElementById('icon-circle-3').innerHTML = data.cardIcons.icon3;
+            }
+        }
+
+        function loadSavedData() {
+            const local = localStorage.getItem('peru_infografia_data_v3');
+            if (local) {
+                try {
+                    applyDataToDOM(JSON.parse(local));
+                } catch(e) {}
+            }
+        }
+
+        renderTimeline();
+        loadSavedData();
+    </script>
+</body>
+</html>
